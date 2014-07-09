@@ -1,0 +1,57 @@
+"http://vim.wikia.com/wiki/Example_vimrc
+"some are this are the recommended... I did also add my preferences
+"Type :so % to source this file. Type it each time I save this file
+set nocompatible
+"Display line number to the left
+set number
+
+syntax on
+"color /colors/tomorrow-night-bright
+"My favourite : Tomorrow-night-bright; monokai; github
+color tnb
+
+set ai
+set mouse=a
+set incsearch
+" Instead of failing a command because of unsaved changes, instead raise a
+" " dialogue asking if you wish to save changed files.
+set confirm
+
+" Use visual bell instead of beeping when doing something wrong
+" This will be in red and I need to type : to clear it
+set visualbell
+
+" Set the command window height to 2 lines, to avoid many cases of having to
+" " "press <Enter> to continue"
+set cmdheight=2
+
+" Indentation settings for using 2 spaces instead of tabs.
+" Do not change 'tabstop' from its default value of 8 with this setup.
+set shiftwidth=2
+set softtabstop=2
+set expandtab
+
+" Use case insensitive search, except when using capital letters
+set ignorecase
+set smartcase
+
+set wildmenu
+set wildmode=list:longest,full
+
+filetype on
+filetype indent on
+filetype plugin on
+
+
+call pathogen#infect()
+
+map <C-n> :NERDTreeToggle<CR>
+"Open NERDTreeToffle if I open vim without a filename
+"autocmd StdinReadPre * let s:std_in=1
+"autocmd VimEnter * if argc() == 0 && !exists("s:std_in") | NERDTree | endif
+
+" close vim if the only window left open is a NERDTree
+autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTreeType") && b:NERDTreeType == "primary") | q | endif
+
+let g:ragtag_global_maps = 1
+
